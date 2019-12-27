@@ -73,9 +73,9 @@ module.exports = {
     enable-back-to-top="true"
     class="right-main" 
     scroll-into-view="{{toView}}">
-        <view wx:for="{{goods}}" wx:key="{{index}}" data-num="{{index}}" class="goodItem" id="{{'good'+index}}">
+        <view wx:for="{{goods}}"  data-num="{{index}}" class="goodItem" id="{{'good'+index}}" wx:key="index">
           <text class="h1-title">{{item.food.name}}</text>
-          <view wx:for="{{item.food.foods}}" wx:key="{{indexFood}}" wx:for-item="itemFood" wx:for-index="indexFood" class="item">
+          <view wx:for="{{item.food.foods}}"  wx:for-item="itemFood" wx:for-index="indexFood" class="item" wx:key="indexFood">
             <image class="img" mode="aspectFill" src="{{itemFood.image}}"></image>
             <view class="list">
               <text class="title">{{itemFood.name}}</text>
@@ -103,16 +103,16 @@ module.exports = {
         </view>
       </view>
      <view class="r">
-       <navigator url="/pages/order/order" hover-class="navigator-hover" wx:if="{{m1.getShopList(goods).count > 0}}" class="weui-btn">
-          <button class="weui-btn" type="warn">我选好了</button>
-       </navigator>
-        <button  wx:else class="weui-btn weui-btn-disable" type="warn">我选好了</button>
+       <!-- <navigator url="/pages/order/order" hover-class="navigator-hover" class="weui-btn">
+       </navigator> -->
+       <button bindtap="open" class="weui-btn {{m1.getShopList(goods).count == 0 ? 'weui-btn-disable' : ''}}" type="warn">我选好了</button>
+        <!-- <button  wx:else class="weui-btn weui-btn-disable" type="warn">我选好了</button> -->
      </view>
      <view class="memuList" wx:if="{{BoPopType}}">
        <view class="ul">
          <view class="m-header">已选<text bindtap='empty'>清空</text></view>
-         <view wx:for="{{goods}}" wx:key="{{index}}">
-           <view class="li" wx:for="{{item.food.foods}}" wx:key="{{indexFood}}" wx:for-item="itemFood" wx:for-index="indexFood">
+         <view wx:for="{{goods}}" wx:key="index">
+           <view class="li" wx:for="{{item.food.foods}}"  wx:for-item="itemFood" wx:for-index="indexFood" wx:key="indexFood">
               <view class="li-w" wx-if="{{itemFood.count > 0}}">
                 <view class="r">
                     <image mode="aspectFill" src="{{itemFood.image}}"></image>

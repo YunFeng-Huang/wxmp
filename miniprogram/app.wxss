@@ -1,7 +1,7 @@
 
 @import 'style/weui.wxss';
 page{
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 
 @font-face {font-family: "iconfont";

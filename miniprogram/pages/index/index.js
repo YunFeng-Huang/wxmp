@@ -62,6 +62,35 @@ Page({
       nbBackgroundColor: '#000000',
     })
   },
+  open(){
+    let arr = []
+    this.data.goods.map((item)=>{
+      item.food.foods.map((k)=>{
+        if(k.count>0){
+          arr.push(k)
+        }
+      })
+    })
+    if(arr.length > 0){
+      wx.navigateTo({
+        url: '/pages/order/order',
+        // events: {
+        //   // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        //   acceptDataFromOpenedPage: function(data) {
+        //     console.log(data,'acceptDataFromOpenedPage-index')
+        //   },
+        //   someEvent: function(data) {
+        //     console.log(data,'someEvent-index')
+        //   }
+        // },
+        success: function(res) {
+          console.log(res)
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: arr })
+        }
+      })
+    }
+  },
   tabClick: function (e) {
       this.setData({
           sliderOffset: e.currentTarget.offsetLeft,

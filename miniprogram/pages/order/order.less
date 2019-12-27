@@ -1,7 +1,9 @@
 /* pages/order/order.wxss */
 .container{
-  height: calc(100vh - 140rpx);
-  overflow-y: auto;
+  // height: calc(100vh - 140rpx);
+  // overflow-y: auto;
+  color: #333;
+  padding-bottom: 120rpx;
 }
 .main{
   padding: 40rpx;
@@ -40,6 +42,9 @@
   line-height: 64rpx;
   margin-top: 20rpx;
   padding: 40rpx;
+  .f{
+    color: #999;
+  }
   .ul{
     .li{
       border-bottom: 1rpx solid #f2f2f2;
@@ -80,7 +85,7 @@
 }
 .note{
   padding: 40rpx;
-  textarea{
+  textarea,.textarea{
     background: #f7f8fa;
     padding: 20rpx;
     min-height: 100rpx;
@@ -103,8 +108,9 @@
   }
   .l{
     margin-left: 32rpx;
+    color: #333;
     text{
-      font-size: 32rpx;
+      font-size: 48rpx;
       margin-left: 10rpx;
     }
   }

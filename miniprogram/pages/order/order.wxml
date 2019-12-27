@@ -1,5 +1,17 @@
 <!--pages/order/order.wxml-->
-       
+   
+<wxs module="m1">
+var getPrice = function(array){
+   var price = 0
+  for (var i = 0; i < array.length; ++i) {
+    price+=array[i].count * array[i].price
+  }
+  return price
+}
+
+module.exports = getPrice;
+</wxs>    
+
 <page-meta
   background-text-style="{{bgTextStyle}}"
   background-color="{{bgColor}}"
@@ -30,30 +42,29 @@
   </view>
    <view class="divider"></view>
     <view class="list">
-      订单明细（共1个明细）
+      订单明细 <text class="f">（共{{shopList.length}}个明细）</text>
       <view class="ul">
-        <view class="li">
+        <view class="li" wx:for="{{shopList}}" wx:key="index">
           <view class="p">
-            绿茶 <text class="i">$40.00</text><text class="number">x1</text> 
+            {{item.name}} <text class="i">${{item.price}}</text><text class="number">X {{item.count}}</text> 
           </view>
         </view>
         <view class="fee">
-          <view class="p">配送费<text class="i">$10</text></view>
+          <view class="p">配送费<text class="i">${{fee}}</text></view>
         </view>
         <view class="right">
-          合计：<text>¥55.00</text>
+          合计：<text>$ {{m1(shopList)+fee}}</text>
         </view>
       </view>
     </view>
     <view class="note">
       备注：
-      <view>
-        <textarea bindblur="bindTextAreaBlur" auto-height placeholder="备注消息" />
-      </view>
+      <textarea hidden="{{!showTextarea}}" bindblur="bindTextAreaBlur" fixed='true'  bindinput="bindinput" auto-height placeholder="{{form.textarea}}" />
+      <view hidden="{{showTextarea}}" class="textarea" bindtap="openTextarea">{{form.textarea}}</view>
     </view>
-  </view>
+    </view>
     <view class="floor">
-      <view class="l">合计<text>¥55.00</text></view>
+      <view class="l">合计<text>¥ {{m1(shopList)+fee}}</text></view>
       <view class="r">
         <button class="weui-btn" type="warn" bindtap="next" >下一步</button>
       </view>

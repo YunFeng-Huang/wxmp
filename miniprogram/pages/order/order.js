@@ -14,11 +14,50 @@ Page({
     nbLoading: false,
     nbFrontColor: '#000000',
     nbBackgroundColor: '#ffffff',
+    shopList:[],
+    fee:10,
+    form:{
+      textarea:'请填写备注'
+    },
+    address:{
+      value:'浙江省杭州市滨江区江南大道德信Al产业园（杭州市滨江区伟业路3号）',
+      name:'黄',
+      phone:'17742007513'
+    },
+    showTextarea:false
+  },
+  bindinput(e){
+    this.setData({
+      'form.textarea' : e.detail.value
+    })
+  },
+  bindFormSubmit: function(e) {
+    console.log(e.detail.value.textarea)
+  },
+  openTextarea(){
+    this.setData({
+      showTextarea:true
+    })
+  },
+  bindTextAreaBlur(){
+    this.setData({
+      showTextarea:false
+    })
   },
   next(){
+    let array = this.data.shopList
+    let price = 0
+    for (let i = 0; i < array.length; ++i) {
+      price+=array[i].count * array[i].price
+    }
+    price+=this.data.fee
     wx.showModal({
       title: '提示',
-      content: '确定支付，并进入支付界面',
+      content: `
+      支付参数
+      textarea : ${this.data.form.textarea || this.data.value}
+      price: ${price}
+      `,
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
@@ -32,28 +71,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    const eventChannel = this.getOpenerEventChannel()
+    // eventChannel.emit('acceptDataFromOpenedPage', {data: 'test'});
+    // eventChannel.emit('someEvent', {data: 'test'});
+    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
+    eventChannel.on('acceptDataFromOpenerPage', (data)=> {
+      console.log(data)
+      this.setData({
+        shopList : data.data
+      })
+    })
+    console.log(this.data.shopList,'onLoad')
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
 
   /**

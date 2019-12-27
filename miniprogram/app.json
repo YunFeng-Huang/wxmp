@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/order/order",
-    "pages/index/index"
-    
+    "pages/index/index",
+    "pages/order/order"
   ],
   "window": {
     "navigationBarBackgroundColor": "#da5c55"

@@ -1,0 +1,111 @@
+/* pages/order/order.wxss */
+.container{
+  height: calc(100vh - 140rpx);
+  overflow-y: auto;
+}
+.main{
+  padding: 40rpx;
+  .title{
+    font-size: 48rpx;
+  }
+  .address-t{
+    font-size: 32rpx;
+    line-height: 128rpx;
+  }
+  .address{
+    background: #f7f8fa;
+    display: flex;
+    padding: 20rpx;
+    border-radius: 4rpx;
+    position: relative;
+    font-size: 28rpx;
+    .div{
+      margin-left: 10rpx;
+      text{
+        position: absolute;
+        right: 40rpx;
+      }
+    }
+  }
+  
+}
+.divider{
+  margin-top:20rpx;
+  height: 20rpx;
+  width: 100%;
+  background: #f7f8fa;
+}
+.list{
+  font-size: 32rpx;
+  line-height: 64rpx;
+  margin-top: 20rpx;
+  padding: 40rpx;
+  .ul{
+    .li{
+      border-bottom: 1rpx solid #f2f2f2;
+      height: 88rpx;
+      line-height: 88rpx;
+      .p{
+        position: relative;
+        .number{
+          position: absolute;
+          right: 200rpx;
+        }
+        .i{
+          position: absolute;
+          right: 10rpx;
+        }
+      }
+    }
+    .fee{
+      border-bottom: 1rpx solid #f1f1f1;
+      height: 88rpx;
+      line-height: 88rpx;
+      .p{
+        position: relative;
+        .i{
+          position: absolute;
+          right: 10rpx;
+        }
+      }
+    }
+    .right{
+      text-align: right;
+      text{
+        font-size: 48rpx;
+        line-height: 128rpx;
+      }
+    }
+  }
+}
+.note{
+  padding: 40rpx;
+  textarea{
+    background: #f7f8fa;
+    padding: 20rpx;
+    min-height: 100rpx;
+  }
+}
+.floor{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding:20rpx 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  .r{
+    margin-right: 32rpx;
+  }
+  .l{
+    margin-left: 32rpx;
+    text{
+      font-size: 32rpx;
+      margin-left: 10rpx;
+    }
+  }
+}

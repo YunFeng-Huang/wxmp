@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/order/order",
+    "pages/index/index"
+    
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#da5c55"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "1574049",
+  "name": "wxmp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12443060",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "12443061",
+      "name": "我的订单",
+      "font_class": "wodedingdan",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "12443062",
+      "name": "电话",
+      "font_class": "dianhua",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "12443063",
+      "name": "购物车",
+      "font_class": "gouwuche",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "12443064",
+      "name": "地址",
+      "font_class": "dizhi",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "12443065",
+      "name": "下单 (1)",
+      "font_class": "xiadan",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "12443066",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    }
+  ]
+}

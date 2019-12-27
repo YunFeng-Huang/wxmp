@@ -1,0 +1,6 @@
+<!--component/select/select.wxml-->
+<view class="count">
+  <text bindtap="reduce"  data-oneIndex="{{oneIndex}}" data-twoIndex="{{twoIndex}}" class="iconfont iconjian {{itemFood.count>0 ? 'reduceActive':''}}"></text>
+  <text class="num">{{itemFood.count}}</text>
+  <text bindtap="add" data-oneIndex="{{oneIndex}}" data-twoIndex="{{twoIndex}}" class="iconfont iconjia"></text>
+</view>

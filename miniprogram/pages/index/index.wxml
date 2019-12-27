@@ -1,0 +1,144 @@
+
+<wxs module="m1">
+var getShopList = function(array){
+   var count = 0;
+   var price = 0
+  for (var i = 0; i < array.length; ++i) {
+    for (var k = 0; k < array[i].food.foods.length; ++k) {
+        if(array[i].food.foods[k].count > 0){
+           count+=array[i].food.foods[k].price*array[i].food.foods[k].count
+           price+=array[i].food.foods[k].price*array[i].food.foods[k].count
+        }
+    }
+  }
+  return {
+    count,
+    price
+  };
+}
+
+module.exports = {
+  getShopList:getShopList
+};
+</wxs>
+
+<!--index.wxml  array[i].food.foods[k].count > 0 && max+=array[i].food.foods[k].price-->
+<view class="container">
+  <!-- 用户 openid -->
+  <view class="header-w">
+    <view class="header">
+    <view class="header-l">
+      <text class="h1">{{userInfo.nickName}}</text>
+      <view class="city">
+        <text class="iconfont icondizhi"></text>
+        <text >{{userInfo.city}}</text>
+      </view> 
+      <view class="phone">
+        <text class="iconfont icondianhua"></text>
+        <text >17742007514</text>
+      </view> 
+    </view>
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+    ></button>
+  </view>
+  <view class="page">
+      <view class="page__bd">
+          <view class="weui-tab">
+              <view class="weui-navbar">
+                  <block wx:for="{{tabs}}" wx:key="*this">
+                      <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                          <view class="weui-navbar__title">{{item}}</view>
+                      </view>
+                  </block>
+                  <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+              </view>
+          </view>
+      </view>
+  </view>
+  </view>
+  <view class="wrap" hidden="{{activeIndex != 0}}">
+    <view class="silder">
+      <view wx:for="{{goods}}" data-num="{{index}}" bindtap='ActiveSilder' class="item {{index == ActiveSilderIndex ? 'item-bg' : ''}}" >
+        <text class="name">{{item.food.name}}</text>
+      </view>
+    </view>
+    <scroll-view
+    scroll-y="true" 
+    bindscroll="scroll" 
+    scroll-with-animation="true"  
+    enable-back-to-top="true"
+    class="right-main" 
+    scroll-into-view="{{toView}}">
+        <view wx:for="{{goods}}" wx:key="{{index}}" data-num="{{index}}" class="goodItem" id="{{'good'+index}}">
+          <text class="h1-title">{{item.food.name}}</text>
+          <view wx:for="{{item.food.foods}}" wx:key="{{indexFood}}" wx:for-item="itemFood" wx:for-index="indexFood" class="item">
+            <image class="img" mode="aspectFill" src="{{itemFood.image}}"></image>
+            <view class="list">
+              <text class="title">{{itemFood.name}}</text>
+              <view class="b">
+                <text class="price">${{itemFood.price}}</text>
+                <view class="select-w">
+                  <components-select oneIndex="{{index}}" twoIndex="{{indexFood}}" itemFood="{{itemFood}}" bind:add="add" bind:reduce="reduce"></components-select>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+    </scroll-view>
+    <view class="floor">
+      <view class="l">
+        <view class="icon-w" bindtap='showPop' style="position: relative;margin-right: 10px;">
+          <view class="iconfont icongouwuche"></view>
+           <view class="weui-badge">
+             {{m1.getShopList(goods).count}}
+           </view>
+        </view>
+        <view class="price-w">
+          <view class="price">合计：<text >${{m1.getShopList(goods).price}}</text></view>
+          <view class="dispatching">另外配送费10.0元</view>
+        </view>
+      </view>
+     <view class="r">
+       <navigator url="/pages/order/order" hover-class="navigator-hover" wx:if="{{m1.getShopList(goods).count > 0}}" class="weui-btn">
+          <button class="weui-btn" type="warn">我选好了</button>
+       </navigator>
+        <button  wx:else class="weui-btn weui-btn-disable" type="warn">我选好了</button>
+     </view>
+     <view class="memuList" wx:if="{{BoPopType}}">
+       <view class="ul">
+         <view class="m-header">已选<text bindtap='empty'>清空</text></view>
+         <view wx:for="{{goods}}" wx:key="{{index}}">
+           <view class="li" wx:for="{{item.food.foods}}" wx:key="{{indexFood}}" wx:for-item="itemFood" wx:for-index="indexFood">
+              <view class="li-w" wx-if="{{itemFood.count > 0}}">
+                <view class="r">
+                    <image mode="aspectFill" src="{{itemFood.image}}"></image>
+                    <text>{{itemFood.name}}</text>
+                </view>
+                <text>${{itemFood.price}}</text>
+                <view class="select-w">
+                  <components-select oneIndex="{{index}}" twoIndex="{{indexFood}}" itemFood="{{itemFood}}" bind:add="add" bind:reduce="reduce"></components-select>
+                </view>
+              </view>
+          </view>
+         </view>
+       </view>
+     </view>
+    </view>
+    <view bindtap='showPop'  class="mask {{BoPopType ? 'maskActive' : ''}}"></view>
+  </view>
+  <view class="wrap2" hidden="{{activeIndex != 1}}">
+    <view class="order">
+      <view class="time">2019年2月26日 10:40 <text class="type">待确定</text></view>
+      <view class="name">
+        水果，绿茶 <text class="number">X4</text>
+      </view>
+      <view class="settement">
+        共x个商品，合计 <text>$ 100</text>
+      </view>
+    </view>
+  </view>
+</view>

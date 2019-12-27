@@ -1,0 +1,61 @@
+<!--pages/order/order.wxml-->
+       
+<page-meta
+  background-text-style="{{bgTextStyle}}"
+  background-color="{{bgColor}}"
+  background-color-top="{{bgColorTop}}"
+  background-color-bottom="{{bgColorBottom}}"
+  scroll-top="{{scrollTop}}"
+  page-style="color: green"
+  root-font-size="16px"
+>
+  <navigation-bar
+    title="{{nbTitle}}"
+    loading="{{nbLoading}}"
+    front-color="{{nbFrontColor}}"
+    background-color="{{nbBackgroundColor}}"
+  />
+  <view class="container">
+    <view class="main">
+    <view class="title">确定订单</view>
+    <view class="address-t">我的收货地址</view>
+    <view class="address">
+      <view class="iconfont icondizhi"></view>
+      <view class="div">
+        <view class="p">浙江省杭州市滨江区江南大道德信Al产业园</view>
+        <view class="p">（杭州市滨江区伟业路3号）<text>  </text></view>
+        <view class="p">黄 17742007513</view>
+      </view>
+    </view>
+  </view>
+   <view class="divider"></view>
+    <view class="list">
+      订单明细（共1个明细）
+      <view class="ul">
+        <view class="li">
+          <view class="p">
+            绿茶 <text class="i">$40.00</text><text class="number">x1</text> 
+          </view>
+        </view>
+        <view class="fee">
+          <view class="p">配送费<text class="i">$10</text></view>
+        </view>
+        <view class="right">
+          合计：<text>¥55.00</text>
+        </view>
+      </view>
+    </view>
+    <view class="note">
+      备注：
+      <view>
+        <textarea bindblur="bindTextAreaBlur" auto-height placeholder="备注消息" />
+      </view>
+    </view>
+  </view>
+    <view class="floor">
+      <view class="l">合计<text>¥55.00</text></view>
+      <view class="r">
+        <button class="weui-btn" type="warn" bindtap="next" >下一步</button>
+      </view>
+    </view>
+</page-meta>

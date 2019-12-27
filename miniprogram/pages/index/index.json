@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "components-select": "/component/select/select"
+  },
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "下单助手",
+  "backgroundTextStyle": "light"
+}

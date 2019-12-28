@@ -16,9 +16,16 @@ var getShopList = function(array){
     price
   };
 }
-
+var getcount = function(array){
+   var count = 0;
+  for (var i = 0; i < array.length; ++i) {
+    count += array[i].count
+  }
+  return count;
+}
 module.exports = {
-  getShopList:getShopList
+  getShopList:getShopList,
+  getcount:getcount
 };
 </wxs>
 
@@ -64,6 +71,7 @@ module.exports = {
     <view class="silder">
       <view wx:for="{{goods}}" data-num="{{index}}" bindtap='ActiveSilder' class="item {{index == ActiveSilderIndex ? 'item-bg' : ''}}" >
         <text class="name">{{item.food.name}}</text>
+        <view class="count" hidden="{{m1.getcount(item.food.foods) == 0}}">{{m1.getcount(item.food.foods)}}</view>
       </view>
     </view>
     <scroll-view
@@ -105,7 +113,7 @@ module.exports = {
      <view class="r">
        <!-- <navigator url="/pages/order/order" hover-class="navigator-hover" class="weui-btn">
        </navigator> -->
-       <button bindtap="open" class="weui-btn {{m1.getShopList(goods).count == 0 ? 'weui-btn-disable' : ''}}" type="warn">我选好了</button>
+       <button bindtap="open" loading="{{loading}}" class="weui-btn {{m1.getShopList(goods).count == 0 ? 'weui-btn-disable' : ''}}" type="warn">我选好了</button>
         <!-- <button  wx:else class="weui-btn weui-btn-disable" type="warn">我选好了</button> -->
      </view>
      <view class="memuList" wx:if="{{BoPopType}}">

@@ -36,7 +36,7 @@ module.exports = getPrice;
       <view class="div">
         <view class="p">浙江省杭州市滨江区江南大道德信Al产业园</view>
         <view class="p">（杭州市滨江区伟业路3号）<text>  </text></view>
-        <view class="p">黄 17742007513</view>
+        <view class="p">黄 17742007514</view>
       </view>
     </view>
   </view>

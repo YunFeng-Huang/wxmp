@@ -10,7 +10,7 @@ Page({
     bgColor: '#ff0000',
     bgColorTop: '#00ff00',
     bgColorBottom: '#0000ff',
-    nbTitle: '标题',
+    nbTitle: '确定支付信息',
     nbLoading: false,
     nbFrontColor: '#000000',
     nbBackgroundColor: '#ffffff',
@@ -51,20 +51,29 @@ Page({
       price+=array[i].count * array[i].price
     }
     price+=this.data.fee
-    wx.showModal({
-      title: '提示',
-      content: `
-      支付参数
-      textarea : ${this.data.form.textarea || this.data.value}
-      price: ${price}
-      `,
-      success (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
+    // wx.showModal({
+    //   title: '提示',
+    //   content: `
+    //   支付参数
+    //   textarea : ${this.data.form.textarea || this.data.value}
+    //   price: ${price}
+    //   `,
+    //   success (res) {
+    //     if (res.confirm) {
+    //       console.log('用户点击确定')
+    //     } else if (res.cancel) {
+    //       console.log('用户点击取消')
+    //     }
+    //   }
+    // })
+    wx.requestPayment({
+      timeStamp: +new Date(),
+      nonceStr: '',
+      package: '',
+      signType: 'MD5',
+      paySign: '',
+      success (res) { },
+      fail (res) { }
     })
   },
   /**
@@ -73,7 +82,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     const eventChannel = this.getOpenerEventChannel()
-    // eventChannel.emit('acceptDataFromOpenedPage', {data: 'test'});
+    eventChannel.emit('acceptDataFromOpenedPage');
     // eventChannel.emit('someEvent', {data: 'test'});
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
     eventChannel.on('acceptDataFromOpenerPage', (data)=> {
@@ -83,12 +92,23 @@ Page({
       })
     })
     console.log(this.data.shopList,'onLoad')
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
   },
 
   /**

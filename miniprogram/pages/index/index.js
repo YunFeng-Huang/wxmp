@@ -19,6 +19,7 @@ Page({
     sliderLeft: 0,
     nbFrontColor: '#000000',
     nbBackgroundColor: '#ffffff',
+    loading:false
   },
 
   onLoad: function() {
@@ -72,17 +73,21 @@ Page({
       })
     })
     if(arr.length > 0){
+      this.setData({
+        loading:true
+      })
+      const self = this
       wx.navigateTo({
         url: '/pages/order/order',
-        // events: {
-        //   // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-        //   acceptDataFromOpenedPage: function(data) {
-        //     console.log(data,'acceptDataFromOpenedPage-index')
-        //   },
-        //   someEvent: function(data) {
-        //     console.log(data,'someEvent-index')
-        //   }
-        // },
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function(data) {
+            console.log(data,'acceptDataFromOpenedPage-index')
+            self.setData({
+              loading:false
+            })
+          },
+        },
         success: function(res) {
           console.log(res)
           // 通过eventChannel向被打开页面传送数据
